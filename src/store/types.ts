@@ -53,6 +53,7 @@ export interface Instrument {
   serialNumber: string;
   location: string;
   manufacturer: string;
+  lastCalibration: string;  // THÊM DÒNG NÀY
   nextCalibration: string;
   calibrationDue: boolean;
 
@@ -62,6 +63,8 @@ export interface Instrument {
   port?: string;
   encryption?: string;
   ipAddress?: string;
+  supportedTest?: string;       // THÊM NẾU CẦN
+  supportedReagents?: string[]; // THÊM NẾU CẦN
 }
 
 export interface Reagent {

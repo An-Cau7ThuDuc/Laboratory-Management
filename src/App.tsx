@@ -11,6 +11,7 @@ import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { PERMISSIONS } from "./constants/permissions";
 import { GlobalLanguageToggle } from "./components/GlobalLanguageToggle";
 
+import { ReportDashboard } from "./modules/report/Page"
 // Dashboard Module
 import { DashboardPage } from "./modules/dashboard/DashboardPage";
 
@@ -60,7 +61,6 @@ import { AuditLogsPage } from "./modules/audit/AuditLogsPage";
 // Community Module
 import { CommunityPage } from "./modules/community/CommunityPage";
 import UserProfilePage from "./modules/profile/UserProfilePage";
-import ReportDashboard from "./modules/report/page";
 function AppRoutesInner() {
   const location = useLocation();
   const background = location.state && location.state.background;
@@ -175,7 +175,9 @@ function AppRoutesInner() {
                 allowedPermissions={[PERMISSIONS.INSTRUMENTS_WRITE]}
                 fallbackPath="/unauthorized"
               >
-                <AddInstrumentPage />
+                <AddInstrumentPage
+                onClose={() => {}}
+                onSave={() => {}} />
               </ProtectedRoute>
             }
           />
@@ -186,7 +188,30 @@ function AppRoutesInner() {
                 allowedPermissions={[PERMISSIONS.INSTRUMENTS_WRITE]}
                 fallbackPath="/unauthorized"
               >
-                <EditInstrumentPage />
+                <EditInstrumentPage
+                 instrument={{
+                  id: '',
+                  name: '',
+                  model: '',
+                  serialNumber: '',
+                  status: 'Active',
+                  lastCalibration: new Date().toISOString(),
+                  nextCalibration: new Date().toISOString(),
+                  location: '',
+                  temperature: '',
+                  sampleVolume: '',
+                  firmwareVersion: '',
+                  port: '',
+                  encryption: '',
+                  ipAddress: '',
+                  calibrationDue: false,
+                  manufacturer: '',
+                  supportedTest: '',
+                  supportedReagents: []
+                }}
+                onClose={() => console.log('Close edit instrument')}
+                onSave={(instrument) => console.log('Save instrument:', instrument)}
+                 />
               </ProtectedRoute>
             }
           />
@@ -197,7 +222,23 @@ function AppRoutesInner() {
                 allowedPermissions={[PERMISSIONS.INSTRUMENTS_READ]}
                 fallbackPath="/unauthorized"
               >
-                <InstrumentDetailsPage />
+                <InstrumentDetailsPage 
+                 instrument={{
+                  id: '',
+                  name: '',
+                  model: '',
+                  serialNumber: '',
+                  status: 'Active',
+                  location: '',
+                  manufacturer: '',
+                  lastCalibration: new Date().toISOString(), 
+                  nextCalibration: new Date().toISOString(),
+                  calibrationDue: false,
+                  // Các field optional có thể bỏ qua
+                }}
+                onClose={() => {}}
+                onEdit={() => {}}
+                />
               </ProtectedRoute>
             }
           />

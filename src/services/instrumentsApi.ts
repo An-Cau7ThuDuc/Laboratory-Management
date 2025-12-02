@@ -1,5 +1,5 @@
 // services/instrumentsApi.ts
-import { Instrument } from '../types';
+import { Instrument } from '../store/types';
 
 const BASE_URL = import.meta.env.VITE_MOCKAPI_BASE_URL;
 const INSTRUMENTS_ENDPOINT = import.meta.env.VITE_MOCKAPI_INSTRUMENTS_ENDPOINT;
